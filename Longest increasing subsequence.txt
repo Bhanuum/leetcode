@@ -1,0 +1,24 @@
+Longest increasing subsequence
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& a) {
+        vector<int>temp;
+        int n=a.size();
+        temp.push_back(a[0]);
+        int p=1;
+        for(int i=1;i<n;i++)
+        {
+            if(temp.back()<a[i]) 
+            {
+                temp.push_back(a[i]);
+                p++;
+            }
+            else
+            {
+                int o=lower_bound(temp.begin(),temp.end(),a[i])-temp.begin();
+                 temp[o]=a[i];
+            }
+        }
+        return p;
+    }
+};
